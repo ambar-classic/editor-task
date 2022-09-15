@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Task-1</title>
+    <base href="/">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+    <link href="//cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+    <link href="//cdn.quilljs.com/1.3.6/quill.bubble.css" rel="stylesheet">
+</head>
+<style>
+    .sectionOne,
+    .sectionTwo {
+        margin-bottom: 15px;
+    }
+
+    h5 {
+        margin-bottom: 5px;
+        font-size: 18px;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    }
+</style>
+
+<body>
+    <div class="sectionOne">
+        <h5>French Editor</h5>
+        <div id="editorFrench">
+            <p>Enter you text here. Hover on the marked words for intant correction suggestions. To got the whole text
+                checked at once, switch to the Proofread in dialog mode in the editor settings.</p>
+        </div>
+    </div>
+    <div class="sectionTwo">
+        <h5>Italian Editor</h5>
+        <div id="editorItalian">
+
+        </div>
+    </div>
+    <div class="sectionThree">
+        <h5>English Editor</h5>
+        <div id="editorEnglish">
+
+        </div>
+    </div>
+</body>
+
+
+<script>
+    // "serviceId": "tN2hq1ltVnVFsww",
+    window.WEBSPELLCHECKER_CONFIG = {
+        "autoSearch": true,
+        "autoDestroy": true,
+        "autocorrect": true,
+        "autocomplete": true,
+        "serviceId": "tN2hq1ltVnVFsww",
+        "serviceProtocol": "https",
+        "servicePort": "443",
+        "serviceHost": "svc.webspellchecker.net",
+        "servicePath": "api",
+        "lang": "auto",
+        "theme": "ckeditor5",
+        "localization": "en",
+        "enableBadgeButton": true,
+        "enableLanguagesInBadgeButton": false,
+        "detectLocalizationLanguage": true,
+        "autoLangPriorities": {
+            en: 'en_US',
+            fr: 'fr_FR',
+            lt: 'it_IT'
+        },
+        "actionItems": [
+            "ignoreAll",
+            "addWord"
+        ],
+        "settingsSections": [
+            "dictionaries",
+            "languages",
+            "general",
+            "options"
+        ]
+    }
+</script>
+<script src="https://svc.webspellchecker.net/spellcheck31/wscbundle/wscbundle.js"></script>
+<script src="//cdn.quilljs.com/1.3.6/quill.min.js"></script>
+<script>
+    var quillFrench = new Quill('#editorFrench', {
+        theme: 'snow'
+    });
+    WEBSPELLCHECKER.init({
+        container: quillFrench.root
+    });
+
+    var quillItalian = new Quill('#editorItalian', {
+        theme: 'snow'
+    });
+    WEBSPELLCHECKER.init({
+        container: quillItalian.root
+    });
+
+    var quillEnglish = new Quill('#editorEnglish', {
+        theme: 'snow'
+    });
+    WEBSPELLCHECKER.init({
+        container: quillEnglish.root
+    });
+
+        // quillFrench.on('text-change', function (eventName, ...args) {
+    //     var delta = quillFrench.getText();
+    //     const splitData = delta.split(/[ ,]+/).filter(function (v) { return v !== '' }).join(', ');
+    //     console.log(splitData);
+    //     const fd = new URLSearchParams();
+    //     fd.append('text', splitData);
+    //     fd.append('lang', 'fr')
+    //     fetch('http://35.197.120.214:5000/api/v1/spell', {
+    //         method: 'post',
+    //         body: fd
+    //     })
+    //         .then(res => {
+    //             console.log(res);
+    //         })
+    //         .catch(error => {
+    //             console.log(error);
+    //         })
+    // });
+</script>
+
+</html>
